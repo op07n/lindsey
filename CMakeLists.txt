@@ -25,7 +25,7 @@ qt5_add_resources(SRCS ${RC})
 
 add_executable(lindsey ${SRCS} ${INCLUDES} ${RC})
 if(BITBAKE_BS)
-  target_link_libraries(lindsey Qt5::Widgets Qt5::Qml qt5webengine)
+  target_link_libraries(lindsey Qt5::Widgets Qt5::Qml Qt5WebEngine)
 else()
   target_link_libraries(lindsey Qt5::WebEngine Qt5::Widgets Qt5::Qml)
 endif()
