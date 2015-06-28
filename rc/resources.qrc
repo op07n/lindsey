@@ -1,9 +1,10 @@
-<!DOCTYPE RCC><RCC version="1.0">
+<RCC>
     <qresource prefix="/">
         <file>lindsey_window.qml</file>
     </qresource>
-    <qresource prefix="icons">
+    <qresource prefix="/icons">
         <file alias="go-next.png">icons/go-next.png</file>
         <file alias="go-previous.png">icons/go-previous.png</file>
+        <file alias="go-home.png">icons/go-home.png</file>
     </qresource>
 </RCC>

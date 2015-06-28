@@ -10,7 +10,10 @@
 ApplicationEngine::ApplicationEngine()
 {
     load(QUrl("qrc:/lindsey_window.qml"));
-    QMetaObject::invokeMethod(rootObjects().first(), "load", Q_ARG(QVariant, ApplicationEngine::homeUrl()));
+    
+    const QUrl homeUrl = ApplicationEngine::homeUrl();
+    QMetaObject::invokeMethod(rootObjects().first(), "setHomeUrl", Q_ARG(QVariant, homeUrl));
+    QMetaObject::invokeMethod(rootObjects().first(), "loadUrl", Q_ARG(QVariant, homeUrl));
 }
 
 QUrl ApplicationEngine::homeUrl()

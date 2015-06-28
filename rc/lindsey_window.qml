@@ -6,12 +6,15 @@ import QtQuick.Layouts 1.0
 ApplicationWindow {
     id: browserWindow
 
-    function load(url) { webEngineView.url = url }
+    function loadUrl(url) { webEngineView.url = url }
+    function setHomeUrl(url) { browserWindow.homeUrl = url }
 
     width: 800
     height: 600
     visible: true
     title: webEngineView && webEngineView.title
+
+    property url homeUrl: "http:/www.kipr.org"
 
     toolBar: ToolBar {
         id: navigationBar
@@ -29,6 +32,12 @@ ApplicationWindow {
                 onClicked: webEngineView.goForward()
                 enabled: webEngineView && webEngineView.canGoForward
             }
+            ToolButton {
+                id: homeButton
+                iconSource: "icons/go-home.png"
+                onClicked: browserWindow.loadUrl(browserWindow.homeUrl)
+            }
+
             Item { Layout.fillWidth: true }
         }
     }
