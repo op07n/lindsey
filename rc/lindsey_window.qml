@@ -10,8 +10,8 @@ ApplicationWindow {
     function loadUrl(url) { webEngineView.url = url }
     function setHomeUrl(url) { browserWindow.homeUrl = url }
 
-    width: 800
-    height: 600
+    width: 480
+    height: 272
     visible: true
     visibility: "FullScreen"
     title: webEngineView && webEngineView.title
@@ -25,8 +25,19 @@ ApplicationWindow {
         }
     }
 
+    Action {
+        shortcut: "Ctrl+U"
+        onTriggered: webEngineView.scrollUp()
+    }
+
+    Action {
+        shortcut: "Ctrl+D"
+        onTriggered: webEngineView.scrollDown()
+    }
+
     toolBar: ToolBar {
         id: navigationBar
+
         RowLayout {
             anchors.fill: parent;
             ToolButton {
@@ -45,16 +56,6 @@ ApplicationWindow {
                 id: homeButton
                 iconSource: "icons/go-home.png"
                 onClicked: browserWindow.loadUrl(browserWindow.homeUrl)
-            }
-            ToolButton {
-                id: upButton
-                iconSource: "icons/go-up.png"
-                onClicked: webEngineView.scrollUp()
-            }
-            ToolButton {
-                id: downButton
-                iconSource: "icons/go-down.png"
-                onClicked: webEngineView.scrollDown()
             }
 
             Item { Layout.fillWidth: true }

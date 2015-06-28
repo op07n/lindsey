@@ -6,7 +6,5 @@
         <file alias="go-next.png">icons/go-next.png</file>
         <file alias="go-previous.png">icons/go-previous.png</file>
         <file alias="go-home.png">icons/go-home.png</file>
-        <file alias="go-up.png">icons/go-up.png</file>
-        <file alias="go-down.png">icons/go-down.png</file>
     </qresource>
 </RCC>
