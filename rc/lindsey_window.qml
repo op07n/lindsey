@@ -12,6 +12,7 @@ ApplicationWindow {
     width: 800
     height: 600
     visible: true
+    visibility: "FullScreen"
     title: webEngineView && webEngineView.title
 
     property url homeUrl: "http:/www.kipr.org"
