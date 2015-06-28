@@ -6,9 +6,9 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 if(BITBAKE_BS)
-  find_package(Qt5 COMPONENTS Network Widgets Qml)
+  find_package(Qt5 COMPONENTS Widgets Qml)
 else()
-  find_package(Qt5 COMPONENTS Network WebEngine Widgets Qml)
+  find_package(Qt5 COMPONENTS WebEngine Widgets Qml)
 endif()
 
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
