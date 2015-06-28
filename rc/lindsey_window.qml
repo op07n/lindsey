@@ -2,6 +2,7 @@ import QtQuick 2.1
 import QtWebEngine 1.0
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
+import QtQuick.Window 2.1
 
 ApplicationWindow {
     id: browserWindow
@@ -16,6 +17,13 @@ ApplicationWindow {
     title: webEngineView && webEngineView.title
 
     property url homeUrl: "http:/www.kipr.org"
+
+    Action {
+        shortcut: "Ctrl+F"
+        onTriggered: {
+            browserWindow.visibility = browserWindow.visibility == Window.FullScreen ? Window.Windowed : Window.FullScreen
+        }
+    }
 
     toolBar: ToolBar {
         id: navigationBar
