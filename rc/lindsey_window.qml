@@ -37,6 +37,16 @@ ApplicationWindow {
                 iconSource: "icons/go-home.png"
                 onClicked: browserWindow.loadUrl(browserWindow.homeUrl)
             }
+            ToolButton {
+                id: upButton
+                iconSource: "icons/go-up.png"
+                onClicked: webEngineView.runJavaScript("window.scrollBy(0, -80);")
+            }
+            ToolButton {
+                id: downButton
+                iconSource: "icons/go-down.png"
+                onClicked: webEngineView.runJavaScript("window.scrollBy(0, 80);")
+            }
 
             Item { Layout.fillWidth: true }
         }
