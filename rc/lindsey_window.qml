@@ -18,6 +18,7 @@ ApplicationWindow {
 
     property url homeUrl: "http:/www.kipr.org"
 
+    // Fullscreen shortcut
     Action {
         shortcut: "Ctrl+F"
         onTriggered: {
@@ -25,18 +26,38 @@ ApplicationWindow {
         }
     }
 
+    // Scroll up shortcut
     Action {
         shortcut: "Ctrl+U"
-        onTriggered: webEngineView.scrollUp()
+        onTriggered: {
+            webEngineView.scrollUp()
+            navigationBar.showBriefly()
+        }
     }
 
+    // Scroll down shortcut
     Action {
         shortcut: "Ctrl+D"
-        onTriggered: webEngineView.scrollDown()
+        onTriggered: {
+            webEngineView.scrollDown()
+            navigationBar.showBriefly()
+        }
     }
 
     toolBar: ToolBar {
         id: navigationBar
+        visible: false
+
+        Timer {
+            id: hideTimer
+            interval: 3000
+            onTriggered: navigationBar.visible = false;
+        }
+
+        function showBriefly() {
+            visible = true
+            hideTimer.restart()
+        }
 
         RowLayout {
             anchors.fill: parent;
