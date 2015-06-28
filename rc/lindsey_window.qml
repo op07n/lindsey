@@ -40,12 +40,12 @@ ApplicationWindow {
             ToolButton {
                 id: upButton
                 iconSource: "icons/go-up.png"
-                onClicked: webEngineView.runJavaScript("window.scrollBy(0, -80);")
+                onClicked: webEngineView.scrollUp()
             }
             ToolButton {
                 id: downButton
                 iconSource: "icons/go-down.png"
-                onClicked: webEngineView.runJavaScript("window.scrollBy(0, 80);")
+                onClicked: webEngineView.scrollDown()
             }
 
             Item { Layout.fillWidth: true }
@@ -56,5 +56,9 @@ ApplicationWindow {
         id: webEngineView
         anchors.fill: parent
         focus: true
+
+        function scrollUp() { scroll(-height/2) }
+        function scrollDown() { scroll(height/2) }
+        function scroll(amt) { runJavaScript("window.scrollBy(0, " + amt + ");") }
     }
 }
