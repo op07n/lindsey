@@ -3,6 +3,7 @@ import QtWebEngine 1.0
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
 import QtQuick.Window 2.1
+import QtQuick.Controls.Styles 1.3
 
 ApplicationWindow {
     id: browserWindow
@@ -46,19 +47,57 @@ ApplicationWindow {
 
     toolBar: ToolBar {
         id: navigationBar
-        visible: false
+        state: "hidden"
 
+        states: [
+            State {
+                name: "shown"
+                PropertyChanges { target: navigationBar; height: 44; opacity: 1; visible: true}
+            },
+            State {
+                name: "hidden"
+                PropertyChanges { target: navigationBar; height: 0; opacity: 0; visible: false}
+            }
+        ]
+
+        transitions: Transition {
+            from: "shown"
+            to: "hidden"
+            reversible: true
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation {
+                        target: navigationBar
+                        property: "height"
+                        duration: 200
+                    }
+                    NumberAnimation {
+                        target: navigationBar
+                        property: "opacity"
+                        duration: 150
+                    }
+                }
+                PropertyAction {
+                    target: navigationBar
+                    property: "visible"
+                }
+            }
+        }
+
+        // Timer to hide toolbar after some time
         Timer {
             id: hideTimer
             interval: 3000
-            onTriggered: navigationBar.visible = false;
+            onTriggered: navigationBar.state = "hidden"
         }
 
+        // Shows toolbar and starts hide timer
         function showBriefly() {
-            visible = true
+            state = "shown"
             hideTimer.restart()
         }
 
+        // Toolbar buttons
         RowLayout {
             anchors.fill: parent;
             ToolButton {
