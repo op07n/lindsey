@@ -45,87 +45,77 @@ ApplicationWindow {
         }
     }
 
-    toolBar: ToolBar {
-        id: navigationBar
-        state: "hidden"
-
-        states: [
-            State {
-                name: "shown"
-                PropertyChanges { target: navigationBar; height: 44; opacity: 1; visible: true}
-            },
-            State {
-                name: "hidden"
-                PropertyChanges { target: navigationBar; height: 0; opacity: 0; visible: false}
-            }
-        ]
-
-        transitions: Transition {
-            from: "shown"
-            to: "hidden"
-            reversible: true
-            SequentialAnimation {
-                ParallelAnimation {
-                    NumberAnimation {
-                        target: navigationBar
-                        property: "height"
-                        duration: 200
-                    }
-                    NumberAnimation {
-                        target: navigationBar
-                        property: "opacity"
-                        duration: 150
-                    }
-                }
-                PropertyAction {
-                    target: navigationBar
-                    property: "visible"
-                }
-            }
-        }
-
-        // Timer to hide toolbar after some time
-        Timer {
-            id: hideTimer
-            interval: 3000
-            onTriggered: navigationBar.state = "hidden"
-        }
-
-        // Shows toolbar and starts hide timer
-        function showBriefly() {
-            state = "shown"
-            hideTimer.restart()
-        }
-
-        // Toolbar buttons
-        RowLayout {
-            anchors.fill: parent;
-            ToolButton {
-                id: backButton
-                iconSource: "icons/go-previous.png"
-                onClicked: webEngineView.goBack()
-                enabled: webEngineView && webEngineView.canGoBack
-            }
-            ToolButton {
-                id: forwardButton
-                iconSource: "icons/go-next.png"
-                onClicked: webEngineView.goForward()
-                enabled: webEngineView && webEngineView.canGoForward
-            }
-            ToolButton {
-                id: homeButton
-                iconSource: "icons/go-home.png"
-                onClicked: browserWindow.loadUrl(browserWindow.homeUrl)
-            }
-
-            Item { Layout.fillWidth: true }
-        }
-    }
-
     WebEngineView {
         id: webEngineView
         anchors.fill: parent
         focus: true
+
+        ToolBar {
+            id: navigationBar
+            state: "hidden"
+
+            states: [
+                State {
+                    name: "shown"
+                    PropertyChanges { target: navigationBar; opacity: 1; visible: true}
+                },
+                State {
+                    name: "hidden"
+                    PropertyChanges { target: navigationBar; opacity: 0; visible: false}
+                }
+            ]
+
+            transitions: Transition {
+                from: "shown"
+                to: "hidden"
+                reversible: true
+                SequentialAnimation {
+                    NumberAnimation { target: navigationBar; property: "opacity"; duration: 200 }
+                    PropertyAction { target: navigationBar; property: "visible" }
+                }
+            }
+
+            // Timer to hide toolbar after some time
+            Timer {
+                id: hideTimer
+                interval: 3000
+                onTriggered: navigationBar.state = "hidden"
+            }
+
+            // Shows toolbar and starts hide timer
+            function showBriefly() {
+                state = "shown"
+                hideTimer.restart()
+            }
+
+            // Empty mouse area
+            // Prevents mouse events from going "through" the toolbar
+            MouseArea { anchors.fill: parent }
+
+            // Toolbar buttons
+            RowLayout {
+                anchors.fill: parent;
+                ToolButton {
+                    id: backButton
+                    iconSource: "icons/go-previous.png"
+                    onClicked: webEngineView.goBack()
+                    enabled: webEngineView && webEngineView.canGoBack
+                }
+                ToolButton {
+                    id: forwardButton
+                    iconSource: "icons/go-next.png"
+                    onClicked: webEngineView.goForward()
+                    enabled: webEngineView && webEngineView.canGoForward
+                }
+                ToolButton {
+                    id: homeButton
+                    iconSource: "icons/go-home.png"
+                    onClicked: browserWindow.loadUrl(browserWindow.homeUrl)
+                }
+
+                Item { Layout.fillWidth: true }
+            }
+        }
 
         function scrollUp() { scroll(-height/2) }
         function scrollDown() { scroll(height/2) }
