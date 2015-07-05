@@ -23,7 +23,7 @@ ButtonHandler::ButtonHandler()
   _sub = _node->subscribe("/robot/button_states", std::bind(&ButtonHandler::receivedMessage, this, _1, _2));
   
   connect(&_spin_timer, &QTimer::timeout, [] () { spinner::spin_once(); });
-  _spin_timer.start(1000);
+  _spin_timer.start(100);
 }
 
 void ButtonHandler::receivedMessage(const bson_t *msg, void *)
