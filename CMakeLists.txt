@@ -39,3 +39,5 @@ if(BITBAKE_BS)
 else()
   target_link_libraries(lindsey Qt5::WebEngine Qt5::Widgets Qt5::Qml daylite bson-1.0)
 endif()
+
+add_subdirectory(tools)
