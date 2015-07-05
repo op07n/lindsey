@@ -12,6 +12,13 @@ A simple browser for the Link2, written in Qt.
  	cmake ..
  	make
 
+## Running
+The lindsey executable can be found in the build directory. You can specify a home URL as an argument. For example,
+
+	./lindsey www.kipr.org
+	
+will run lindsey and display KIPR's website.
+
 ## Authors
 * Nafis Zaman
 
