@@ -5,8 +5,8 @@ A simple browser for the Link2, written in Qt.
 * [Qt 5.4](http://www.qt.io/download/) or higher
 * [CMake 2.8.11](http://www.cmake.org/download/) or higher
 * [libbson](http://api.mongodb.org/libbson/1.1.4/)
-* [bson_bind](www.github.com/kipr/bson_bind)
-* [daylite](www.github.com/kipr/daylite)
+* [bson_bind](http://www.github.com/kipr/bson_bind)
+* [daylite](http://www.github.com/kipr/daylite)
 
 ## Building (OS X and Linux)
 	cd lindsey
