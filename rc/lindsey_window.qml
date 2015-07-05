@@ -35,24 +35,6 @@ ApplicationWindow {
         }
     }
 
-    // Scroll up shortcut
-    Action {
-        shortcut: "Ctrl+U"
-        onTriggered: {
-            webEngineView.scrollViewUp()
-            navigationBar.showBriefly()
-        }
-    }
-
-    // Scroll down shortcut
-    Action {
-        shortcut: "Ctrl+D"
-        onTriggered: {
-            webEngineView.scrollViewDown()
-            navigationBar.showBriefly()
-        }
-    }
-
     WebEngineView {
         id: webEngineView
         objectName: "webEngineView"
