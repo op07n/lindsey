@@ -1,0 +1,5 @@
+function(add_bson_bind PATH_ INCLUDES)
+  get_filename_component(NAME ${PATH_} NAME_WE)
+  add_custom_command(OUTPUT ${NAME}.hpp COMMAND bson_bind ${PATH_} ${CMAKE_CURRENT_BINARY_DIR}/${NAME}.hpp WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+  set(${INCLUDES} ${${INCLUDES}} ${NAME}.hpp PARENT_SCOPE)
+endfunction()
