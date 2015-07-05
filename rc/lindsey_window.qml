@@ -10,6 +10,14 @@ ApplicationWindow {
 
     function loadUrl(url) { webEngineView.url = url }
     function setHomeUrl(url) { browserWindow.homeUrl = url }
+    function scrollUp() {
+        webEngineView.scrollViewUp()
+        navigationBar.showBriefly()
+    }
+    function scrollDown() {
+        webEngineView.scrollViewDown()
+        navigationBar.showBriefly()
+    }
 
     width: 480
     height: 272
@@ -31,7 +39,7 @@ ApplicationWindow {
     Action {
         shortcut: "Ctrl+U"
         onTriggered: {
-            webEngineView.scrollUp()
+            webEngineView.scrollViewUp()
             navigationBar.showBriefly()
         }
     }
@@ -40,13 +48,14 @@ ApplicationWindow {
     Action {
         shortcut: "Ctrl+D"
         onTriggered: {
-            webEngineView.scrollDown()
+            webEngineView.scrollViewDown()
             navigationBar.showBriefly()
         }
     }
 
     WebEngineView {
         id: webEngineView
+        objectName: "webEngineView"
         anchors.fill: parent
         focus: true
 
@@ -117,8 +126,8 @@ ApplicationWindow {
             }
         }
 
-        function scrollUp() { scroll(-height/2) }
-        function scrollDown() { scroll(height/2) }
-        function scroll(amt) { runJavaScript("window.scrollBy(0, " + amt + ");") }
+        function scrollViewUp() { scrollView(-height/2) }
+        function scrollViewDown() { scrollView(height/2) }
+        function scrollView(amt) { runJavaScript("window.scrollBy(0, " + amt + ");") }
     }
 }

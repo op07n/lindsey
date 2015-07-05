@@ -2,18 +2,18 @@
 
 #include <QCoreApplication>
 #include <QObject>
-#include <QQmlContext>
-#include <QQmlEngine>
 #include <QUrl>
 #include <QStringList>
 
 ApplicationEngine::ApplicationEngine()
-{
+{ 
     load(QUrl("qrc:/lindsey_window.qml"));
     
+    rootObject = rootObjects().first();
+    
     const QUrl homeUrl = ApplicationEngine::homeUrl();
-    QMetaObject::invokeMethod(rootObjects().first(), "setHomeUrl", Q_ARG(QVariant, homeUrl));
-    QMetaObject::invokeMethod(rootObjects().first(), "loadUrl", Q_ARG(QVariant, homeUrl));
+    QMetaObject::invokeMethod(rootObject, "setHomeUrl", Q_ARG(QVariant, homeUrl));
+    QMetaObject::invokeMethod(rootObject, "loadUrl", Q_ARG(QVariant, homeUrl));
 }
 
 QUrl ApplicationEngine::homeUrl()
@@ -30,4 +30,14 @@ QUrl ApplicationEngine::homeUrl()
     }
     
     return QUrl(QStringLiteral("http://www.kipr.org"));
+}
+
+void ApplicationEngine::callScrollUp()
+{
+  QMetaObject::invokeMethod(rootObject, "scrollUp");
+}
+
+void ApplicationEngine::callScrollDown()
+{
+  QMetaObject::invokeMethod(rootObject, "scrollDown");
 }
