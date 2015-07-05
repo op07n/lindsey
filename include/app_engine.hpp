@@ -5,16 +5,16 @@
 
 class ApplicationEngine : public QQmlApplicationEngine {
   Q_OBJECT
-  public:
-    ApplicationEngine();
-    static QUrl homeUrl();
+public:
+  ApplicationEngine();
+  static QUrl homeUrl();
 
-  public slots:
-    void callScrollUp();
-    void callScrollDown();
+public slots:
+  void callScrollUp();
+  void callScrollDown();
     
-  private:
-    QObject *rootObject;
+private:
+  QObject *rootObject;
 };
 
 #endif // _APP_ENGINE_HPP_
