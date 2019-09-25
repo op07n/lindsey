@@ -19,7 +19,7 @@ shallow_clone: true
 clone_depth: 5   
 
 environment:
-  PROJECT_NAME: qvisualisation
+  PROJECT_NAME: lindsey
   matrix:
   # - id: msvc-x86
   #   APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
